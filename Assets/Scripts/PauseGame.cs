@@ -8,6 +8,8 @@ public class PauseGame : MonoBehaviour
     public Button pauseBtn;
     public Button resumeBtn;
 
+    public AudioSource btnSound;
+
     public Canvas gameCanvas;
     public Canvas pauseCanvas;
 
@@ -20,6 +22,7 @@ public class PauseGame : MonoBehaviour
 
     void Pause()
     {
+        btnSound.Play();
         if (!isPaused)
         {   
             gameCanvas.gameObject.SetActive(false);

@@ -7,6 +7,8 @@ public class Score : MonoBehaviour
 {
     public static Score Instance;
 
+    public AudioSource scoreSound;
+
     public Text scoreText;
     public Text endGameScoreText;
     public int score = 0;
@@ -23,12 +25,13 @@ public class Score : MonoBehaviour
     }
     public void AddScore()
     {
+        scoreSound.Play();
         score++;
         UpdateTextScore();
     }
     public void UpdateTextScore()
     {
         scoreText.text = score.ToString("F0");
-        endGameScoreText.text = "Your score" + "\n" + score.ToString("F0");
+        endGameScoreText.text = "Score:" + " " + score.ToString("F0");
     }
 }

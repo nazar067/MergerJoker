@@ -11,6 +11,9 @@ public class PutCards : MonoBehaviour
     public Button firstDeck;
     public Button secondDeck;
 
+    public AudioSource cardSound;
+    public AudioSource minusHpSound;
+
     public Image randCard;
     public Image previousCard;
     public Image jokerCard;
@@ -34,9 +37,15 @@ public class PutCards : MonoBehaviour
 
     private bool gameEnded = false;
 
+    private Animator cardAnimation;
+    private Animator jokerAnimation;
+
 
     void Start()
     {
+        cardAnimation = randCard.GetComponent<Animator>();
+        jokerAnimation = jokerCard.GetComponent<Animator>();
+
         firstDeck.onClick.AddListener(PutCard);
         secondDeck.onClick.AddListener(PutJoker);
     }
@@ -78,6 +87,7 @@ public class PutCards : MonoBehaviour
     {
         if (check == 0)
         {
+            cardSound.Play();
             int chooseCard = Random.Range(0, cards.Length);
             randCard.sprite = cards[chooseCard];
             randCard.gameObject.SetActive(true);
@@ -88,9 +98,11 @@ public class PutCards : MonoBehaviour
         {
             if (isJoker == false) 
             {
-                if(randCard.sprite == jokerSprite)
+                cardSound.Play();
+                if (randCard.sprite == jokerSprite)
                 {
                     hp--;
+                    minusHpSound.Play();
                 }
                 randCard.gameObject.SetActive(false);
                 previousCard.sprite = randCard.sprite;
@@ -114,6 +126,7 @@ public class PutCards : MonoBehaviour
             }
             else if(isJoker == true)
             {
+                cardSound.Play();
                 previousCard.sprite = jokerCard.sprite;
                 jokerCard.gameObject.SetActive(false);
                 previousCard.gameObject.SetActive(true);
@@ -138,11 +151,13 @@ public class PutCards : MonoBehaviour
             }
 
         }
+        cardAnimation.Play("MoveCard");
     }
     private void PutJoker()
     {
         if(check != 0 && isJoker == false)
         {
+            cardSound.Play();
             jokerCard.sprite = jokerSprite;
             jokerCard.gameObject.SetActive(true);
             previousCard.sprite = randCard.sprite;
@@ -154,13 +169,16 @@ public class PutCards : MonoBehaviour
             if (previousCard.sprite != jokerCard.sprite)
             {
                 hp--;
+                minusHpSound.Play();
             }
             else if(previousCard.sprite == jokerCard.sprite)
             {
                 Score.Instance.AddScore();
                 Timer.Instance.AddMinute();
+                Money.Instance.AddMoney();
             }
         }
+        jokerAnimation.Play("MoveJokerCard");
     }
     private void ChangeHpSprite(int count)
     {

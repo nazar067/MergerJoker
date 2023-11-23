@@ -7,11 +7,13 @@ public class Timer : MonoBehaviour
 {
     public static Timer Instance;
 
-    public float gameTime = 120f; 
+    public float gameTime = 60f; 
     private float timer;           
     private bool gameEnded = false; 
 
     public Text timerText;
+
+    public AudioSource loseSound;
 
     public Canvas gameCanvas;
     public Canvas gameEndCanvas;
@@ -53,6 +55,7 @@ public class Timer : MonoBehaviour
     {
         gameEnded = true;
 
+        loseSound.Play();
         gameCanvas.gameObject.SetActive(false);
         gameEndCanvas.gameObject.SetActive(true);
 
@@ -60,7 +63,7 @@ public class Timer : MonoBehaviour
     }
     public void AddMinute()
     {
-        timer += 60f;
+        timer += 20f;
     }
 }
 
