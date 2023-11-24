@@ -18,6 +18,7 @@ public class Timer : MonoBehaviour
     public Canvas gameCanvas;
     public Canvas gameEndCanvas;
 
+    public Button plusTime;
     void Start()
     {
         timer = gameTime;
@@ -34,7 +35,11 @@ public class Timer : MonoBehaviour
         if (!gameEnded)
         {
             timer -= Time.deltaTime;
-
+            if(timer < 20f)
+            {
+                ScaleAnim anim = plusTime.GetComponent<ScaleAnim>();
+                anim.enabled = true;
+            }
             if (timer <= 0f)
             {
                 EndGame();

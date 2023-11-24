@@ -12,6 +12,8 @@ public class Score : MonoBehaviour
     public Text scoreText;
     public Text endGameScoreText;
     public int score = 0;
+
+    public Button doubleScore;
     private void Start()
     {
         UpdateTextScore();
@@ -28,6 +30,11 @@ public class Score : MonoBehaviour
         scoreSound.Play();
         score++;
         UpdateTextScore();
+        if(score > 4)
+        {
+            ScaleAnim anim = doubleScore.GetComponent<ScaleAnim>();
+            anim.enabled = true;
+        }
     }
     public void UpdateTextScore()
     {

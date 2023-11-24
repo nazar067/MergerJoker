@@ -11,6 +11,8 @@ public class PutCards : MonoBehaviour
     public Button firstDeck;
     public Button secondDeck;
 
+    public Button plusHeart;
+
     public AudioSource cardSound;
     public AudioSource minusHpSound;
 
@@ -25,6 +27,7 @@ public class PutCards : MonoBehaviour
     public Sprite jokerSprite;
     public Sprite emptyHeart;
     public Sprite fullHeart;
+
 
     private int check = 0;
 
@@ -197,6 +200,8 @@ public class PutCards : MonoBehaviour
             case 1:
                 hp2.sprite = emptyHeart;
                 hp1.sprite = fullHeart;
+                ScaleAnim anim = plusHeart.GetComponent<ScaleAnim>();
+                anim.enabled = true;
                 break;
             case 0:
                 gameEnded = true;

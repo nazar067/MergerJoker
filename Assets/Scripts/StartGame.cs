@@ -10,6 +10,9 @@ public class StartGame : MonoBehaviour
     public Button startBtn;
     public Canvas mainCanvas;
     public Canvas loadingCanvas;
+
+    public GameObject LoadBG;
+    public GameObject GameBG;
     void Start()
     {
         Time.timeScale = 1;
@@ -22,5 +25,8 @@ public class StartGame : MonoBehaviour
         mainCanvas.gameObject.SetActive(false);
         loadingCanvas.gameObject.SetActive(true);
         Loading.Instance.check = true;
+
+        LoadBG.gameObject.SetActive(true);
+        GameBG.gameObject.SetActive(false);
     }
 }

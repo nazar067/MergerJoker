@@ -21,6 +21,8 @@ public class Bonus : MonoBehaviour
 
     public AudioSource btnSound;
 
+    public Canvas gameCanvas;
+    public Canvas shopCanvas;
     void Start()
     {
         UpdateTextCount();
@@ -50,6 +52,12 @@ public class Bonus : MonoBehaviour
             PlayerPrefs.SetInt("health", health);
             UpdateTextCount();
         }
+        else
+        {
+            OpenShop.Instance.OpShop();
+            gameCanvas.gameObject.SetActive(false);
+            shopCanvas.gameObject.SetActive(true);
+        }
     }
     void DoubleScore()
     {
@@ -62,6 +70,12 @@ public class Bonus : MonoBehaviour
             PlayerPrefs.SetInt("score", score);
             UpdateTextCount();
         }
+        else
+        {
+            OpenShop.Instance.OpShop();
+            gameCanvas.gameObject.SetActive(false);
+            shopCanvas.gameObject.SetActive(true);
+        }
     }
     void AddTime()
     {
@@ -73,7 +87,13 @@ public class Bonus : MonoBehaviour
             PlayerPrefs.SetInt("time", time);
             UpdateTextCount();
         }
-        
+        else
+        {
+            OpenShop.Instance.OpShop();
+            gameCanvas.gameObject.SetActive(false);
+            shopCanvas.gameObject.SetActive(true);
+
+        }
     }
     public void UpdateTextCount()
     {

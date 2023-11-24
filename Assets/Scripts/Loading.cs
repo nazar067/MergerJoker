@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Loading : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class Loading : MonoBehaviour
 
     public Canvas loadingCanvas;
     public Canvas gameCanvas;
+
+    public GameObject BGLoading;
+    public GameObject BGGame;
 
     public bool check = false;
     void Update()
@@ -30,5 +34,7 @@ public class Loading : MonoBehaviour
         yield return new WaitForSeconds(2.2f);
         loadingCanvas.gameObject.SetActive(false);
         gameCanvas.gameObject.SetActive(true);
+        BGGame.gameObject.SetActive(true);
+        BGLoading.gameObject.SetActive(false);
     }
 }
